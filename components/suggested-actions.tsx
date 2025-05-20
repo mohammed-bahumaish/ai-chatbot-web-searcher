@@ -19,24 +19,24 @@ function PureSuggestedActions({
 }: SuggestedActionsProps) {
   const suggestedActions = [
     {
-      title: "What are the advantages",
-      label: "of using Next.js?",
-      action: "What are the advantages of using Next.js?",
+      title: "Who is",
+      label: "Rafeh Qazi?",
+      action: "Who is Rafeh Qazi?",
     },
     {
-      title: "Write code to",
-      label: `demonstrate djikstra's algorithm`,
-      action: `Write code to demonstrate djikstra's algorithm`,
+      title: "Search for news",
+      label: "about renewable energy trends",
+      action: "Search for news about renewable energy trends",
     },
     {
-      title: "Help me write an essay",
-      label: `about silicon valley`,
-      action: `Help me write an essay about silicon valley`,
+      title: "Look up company info",
+      label: "for Tesla and their competitors",
+      action: "Look up company info for Tesla and their competitors",
     },
     {
-      title: "What is the weather",
-      label: "in San Francisco?",
-      action: "What is the weather in San Francisco?",
+      title: "Find GitHub repositories",
+      label: "for state management in React",
+      action: "Find GitHub repositories for state management in React",
     },
   ];
 
@@ -52,7 +52,7 @@ function PureSuggestedActions({
           exit={{ opacity: 0, y: 20 }}
           transition={{ delay: 0.05 * index }}
           key={`suggested-action-${suggestedAction.title}-${index}`}
-          className={index > 1 ? "hidden sm:block" : "block"}
+          className={index > 1 && index < 4 ? "hidden sm:block" : "block"}
         >
           <Button
             variant="ghost"
