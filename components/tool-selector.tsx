@@ -533,6 +533,33 @@ export function ToolSelector({
           <div className="p-4 space-y-4">
             <h3 className="text-sm font-medium mb-2">Select search sources</h3>
 
+            {specialItems.map((item) => (
+              <div
+                key={item.id}
+                className="space-y-1 border-b pb-3 last:border-b-0 last:pb-0"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="text-green-500">{item.icon}</span>
+                    <Label
+                      htmlFor={`switch-${item.id}`}
+                      className="font-medium text-sm cursor-pointer"
+                    >
+                      {item.title}
+                    </Label>
+                  </div>
+                  <Switch
+                    id={`switch-${item.id}`}
+                    checked={item.isSelected()}
+                    onCheckedChange={item.onChange}
+                  />
+                </div>
+                <p className="text-xs text-muted-foreground ml-6">
+                  {item.description}
+                </p>
+              </div>
+            ))}
+
             {categoryItems.map((item) => (
               <div
                 key={item.id}
@@ -561,38 +588,6 @@ export function ToolSelector({
                 </p>
               </div>
             ))}
-
-            {/* Special Items Section with a divider */}
-            <div className="border-t pt-3 mt-3">
-              <h3 className="text-sm font-medium mb-2">Advanced Tools</h3>
-
-              {specialItems.map((item) => (
-                <div
-                  key={item.id}
-                  className="space-y-1 border-b pb-3 last:border-b-0 last:pb-0"
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <span className="text-green-500">{item.icon}</span>
-                      <Label
-                        htmlFor={`switch-${item.id}`}
-                        className="font-medium text-sm cursor-pointer"
-                      >
-                        {item.title}
-                      </Label>
-                    </div>
-                    <Switch
-                      id={`switch-${item.id}`}
-                      checked={item.isSelected()}
-                      onCheckedChange={item.onChange}
-                    />
-                  </div>
-                  <p className="text-xs text-muted-foreground ml-6">
-                    {item.description}
-                  </p>
-                </div>
-              ))}
-            </div>
           </div>
         </PopoverContent>
       </Popover>

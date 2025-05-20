@@ -7,7 +7,7 @@ import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ai-chatbot-web-searcher.vercel.app"),
+  metadataBase: new URL("https://chat.bahumaish.com/"),
   title: "AI Chatbot Web Searcher",
   description:
     "AI chatbot that provides focused, targeted web search capabilities through specialized search tools allowing users to select specific search domains for more accurate and relevant results.",
