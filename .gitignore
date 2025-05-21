@@ -24,7 +24,6 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # local env files
-.env.local
 .env.development.local
 .env.test.local
 .env.production.local
@@ -32,7 +31,6 @@ yarn-error.log*
 # turbo
 .turbo
 
-.env
 .vercel
 .env*.local
 
@@ -41,3 +39,4 @@ yarn-error.log*
 /playwright-report/
 /blob-report/
 /playwright/*
+config.bat
