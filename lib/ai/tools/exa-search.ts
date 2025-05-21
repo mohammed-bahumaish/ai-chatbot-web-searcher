@@ -25,7 +25,7 @@ const executeExaSearch = async (query: string, category: ExaCategory) => {
     const results = await exa.searchAndContents(query, {
       text: true,
       highlights: true,
-      numResults: 3,
+      numResults: 10,
       category,
     });
 
