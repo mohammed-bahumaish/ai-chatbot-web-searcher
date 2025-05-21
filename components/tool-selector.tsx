@@ -24,15 +24,6 @@ export function ToolSelector({
   onToolsChange,
   className,
 }: ToolSelectorProps) {
-  // Local state to ensure UI consistency
-  const [internalSelectedTools, setInternalSelectedTools] =
-    useState<ToolType[]>(selectedTools);
-
-  // Sync internal state with props
-  useEffect(() => {
-    setInternalSelectedTools(selectedTools);
-  }, [selectedTools]);
-
   // Handler for Exa search tools
   const handleExaToolChange = (category: ExaCategory, checked: boolean) => {
     const exaTool = { type: "searchExa" as const, category };
@@ -41,19 +32,17 @@ export function ToolSelector({
     if (checked) {
       // Add the tool if it's not already selected
       if (!isExaCategorySelected(category)) {
-        updatedTools = [...internalSelectedTools, exaTool];
+        updatedTools = [...selectedTools, exaTool];
       } else {
         return; // No change needed
       }
     } else {
       // Remove the tool if it's selected
-      updatedTools = internalSelectedTools.filter(
+      updatedTools = selectedTools.filter(
         (t) => t.type !== "searchExa" || t.category !== category
       );
     }
 
-    // Update internal state
-    setInternalSelectedTools(updatedTools);
     // Propagate to parent
     onToolsChange(updatedTools);
   };
@@ -66,37 +55,33 @@ export function ToolSelector({
     if (checked) {
       // Add the tool if it's not already selected
       if (!isUrlScrapeSelected()) {
-        updatedTools = [...internalSelectedTools, urlScrapeTool];
+        updatedTools = [...selectedTools, urlScrapeTool];
       } else {
         return; // No change needed
       }
     } else {
       // Remove the tool if it's selected
-      updatedTools = internalSelectedTools.filter(
-        (t) => t.type !== "scrapeUrl"
-      );
+      updatedTools = selectedTools.filter((t) => t.type !== "scrapeUrl");
     }
 
-    // Update internal state
-    setInternalSelectedTools(updatedTools);
     // Propagate to parent
     onToolsChange(updatedTools);
   };
 
   // Check if a specific Exa category is selected
   const isExaCategorySelected = (category: ExaCategory) => {
-    return internalSelectedTools.some(
+    return selectedTools.some(
       (tool) => tool.type === "searchExa" && tool.category === category
     );
   };
 
   // Check if URL scrape is selected
   const isUrlScrapeSelected = () => {
-    return internalSelectedTools.some((tool) => tool.type === "scrapeUrl");
+    return selectedTools.some((tool) => tool.type === "scrapeUrl");
   };
 
   // Count how many tools are selected
-  const selectedCount = internalSelectedTools.length;
+  const selectedCount = selectedTools.length;
 
   // Group categories for better organization
   const categoryItems = [
